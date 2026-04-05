@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <!-- Preload PDF so the browser fetches it in parallel with scripts -->
+    <link rel="preload" href="/portafolio_hq.pdf" as="fetch" crossorigin="anonymous">
+    <title>Camila Quintanilla — Diseñadora Gráfica & Visual</title>
+    <meta name="description" content="Portafolio de Camila Quintanilla, diseñadora gráfica especializada en identidad visual, branding, packaging y diseño editorial. Proyectos: Bunny Buny, Toro Na Sol, Univalle Run.">
+
+    <!-- Fonts: Playfair Display + DM Sans -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;0,900;1,700&family=DM+Sans:opsz,wght@9..40,300;9..40,400;9..40,500&display=swap" rel="stylesheet">
+
+    <!-- PDF.js -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.min.js"></script>
+    <link rel="stylesheet" href="/src/style.css" />
+</head>
+<body>
+
+    <!-- ── Starry Night Background ── -->
+    <div class="starry-night"></div>
+    <div class="milky-way-cloud" style="width:55vw;height:55vw;background:rgba(142,198,224,0.4);top:-25%;left:-15%;"></div>
+    <div class="milky-way-cloud" style="width:60vw;height:50vw;background:rgba(215,133,176,0.3);bottom:-15%;right:-15%;animation-delay:-8s;"></div>
+    <div id="drawn-stars-container" style="position:fixed;inset:0;z-index:5;pointer-events:none;"></div>
+
+    <!-- ── SEO (hidden) ── -->
+    <div class="sr-only">
+        <h1>Camila Quintanilla — Portafolio de Diseño Gráfico</h1>
+        <p>Proyectos destacados: Bunny Buny (Identidad Visual), Univalle Run (Eventos y pósters), Toro Na Sol (Packaging de Cerveza), Pósters Culturales (C Tangana, Young Miko). Diseñadora gráfica, branding, packaging, editorial.</p>
+    </div>
+
+    <!-- ── Floating Nav ── -->
+    <nav class="floating-nav" aria-label="Navegación principal">
+        <ul>
+            <li><button class="cta-nav" onclick="document.querySelector('.contact-footer').scrollIntoView({behavior:'smooth'})">Contacto</button></li>
+        </ul>
+    </nav>
+
+    <div id="app-view">
+        <main>
+            <!-- ── Hero ── -->
+            <header class="hero-section" id="hero">
+                <p class="hero-eyebrow">Portafolio Creativo · 2026</p>
+                <h1 class="hero-title">
+                    Camila<br>
+                    <em>Quintanilla</em>
+                </h1>
+                <div class="hero-meta">
+                    <span>Diseño Gráfico</span>
+                    <span>Branding</span>
+                    <span>Packaging</span>
+                    <span>Editorial</span>
+                </div>
+                <div class="scroll-indicator">
+                    <div class="mouse"></div>
+                    <span>Desliza para explorar</span>
+                </div>
+            </header>
+
+            <!-- ── PDF Pages ── -->
+            <section class="projects-section" id="projects">
+                <div class="projects-grid" id="grid">
+                    <!-- Injected via JS -->
+                </div>
+            </section>
+        </main>
+
+        <!-- ── Footer ── -->
+        <footer class="contact-footer" id="contacto">
+            <p class="footer-eyebrow">Lorem</p>
+            <h2 class="footer-heading">Lorem<br><em>Lorem?</em></h2>
+            <p class="footer-tagline">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam.</p>
+            <div class="social-links">
+                <a href="mailto:hola@camilaquintanilla.com" class="social-btn">✉ Email</a>
+                <a href="https://instagram.com" target="_blank" rel="noopener" class="social-btn">◎ Instagram</a>
+            </div>
+            <div class="footer-bottom">
+                <p>© 2026 Camila Quintanilla. Todos los derechos reservados.</p>
+                <p>Diseñado con ♥</p>
+            </div>
+        </footer>
+    </div>
+
+    <script type="module" src="/src/main.js"></script>
+</body>
+</html>

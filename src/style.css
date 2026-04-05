@@ -1,0 +1,594 @@
+/* ================================================
+   CAMILA QUINTANILLA — PORTAFOLIO EDITORIAL 2026
+   Inspired by Awwwards / CSSDA award-winning portfolios
+   ================================================ */
+
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;0,900;1,700&family=DM+Sans:wght@300;400;500&display=swap');
+
+:root {
+  /* Brand Palette */
+  --bg:        #060810;
+  --surface:   #0d0f1c;
+  --text:      #f0eff4;
+  --muted:     #7a7a99;
+  --accent:    #e07db3;   /* Soft editorial rose */
+  --accent-2:  #f9ec8b;   /* Warm gold accent */
+  --accent-3:  #8ec6e0;   /* Ice blue */
+
+  /* Typography */
+  --serif:     'Playfair Display', serif;
+  --sans:      'DM Sans', sans-serif;
+
+  /* Spacing */
+  --gap:       clamp(1rem, 3vw, 2.5rem);
+}
+
+/* ── Reset ─────────────────────────────────────── */
+*, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+
+html {
+  background: var(--bg);
+  color: var(--text);
+  font-family: var(--sans);
+  overflow-x: hidden;
+  scroll-behavior: smooth;
+}
+
+body { overflow-x: hidden; }
+
+/* ── Starry Background ─────────────────────────── */
+.starry-night {
+  position: fixed;
+  inset: 0;
+  z-index: -10;
+  background: radial-gradient(ellipse 80% 60% at 50% 100%, #0f1a3a 0%, #060810 65%);
+}
+
+/* SVG drawn stars */
+.drawn-star {
+  position: absolute;
+  fill: none;
+  stroke: rgba(255, 255, 255, 0.55);
+  stroke-width: 1.5;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  animation: twinkle 5s infinite alternate ease-in-out;
+  will-change: opacity;
+}
+@keyframes twinkle {
+  0%   { opacity: 0.15; transform: scale(0.85); }
+  100% { opacity: 0.9;  transform: scale(1.1);  }
+}
+
+/* Milky Way blur blobs */
+.milky-way-cloud {
+  position: fixed;
+  border-radius: 50%;
+  filter: blur(130px);
+  z-index: -8;
+  opacity: 0.35;
+  animation: drift 25s infinite alternate ease-in-out;
+  pointer-events: none;
+}
+@keyframes drift {
+  0%   { transform: scale(1) translateY(0); }
+  100% { transform: scale(1.12) translateY(4vh); }
+}
+
+/* ── Accessibility ─────────────────────────────── */
+.sr-only {
+  position: absolute;
+  width: 1px; height: 1px;
+  padding: 0; margin: -1px;
+  overflow: hidden;
+  clip: rect(0,0,0,0);
+  border: 0;
+}
+
+/* ── Floating Nav ──────────────────────────────── */
+.floating-nav {
+  position: fixed;
+  bottom: 2rem;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 200;
+  background: rgba(6, 8, 16, 0.75);
+  backdrop-filter: blur(24px) saturate(180%);
+  -webkit-backdrop-filter: blur(24px) saturate(180%);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 5rem;
+  padding: 0.45rem 0.75rem;
+  box-shadow: 0 8px 40px rgba(0,0,0,0.6), 0 0 0 1px rgba(255,255,255,0.03) inset;
+}
+
+.floating-nav ul {
+  list-style: none;
+  display: flex;
+  gap: 0.25rem;
+  align-items: center;
+}
+
+.floating-nav button {
+  background: none;
+  border: none;
+  color: var(--muted);
+  font-family: var(--sans);
+  font-size: 0.82rem;
+  font-weight: 500;
+  letter-spacing: 0.04em;
+  padding: 0.55rem 1.1rem;
+  border-radius: 4rem;
+  cursor: pointer;
+  transition: color 0.25s ease, background 0.25s ease;
+}
+
+.floating-nav button:hover {
+  color: var(--text);
+  background: rgba(255,255,255,0.07);
+}
+
+.floating-nav button.cta-nav {
+  background: var(--accent);
+  color: #0a0510;
+  font-weight: 700;
+  padding: 0.55rem 1.4rem;
+}
+.floating-nav button.cta-nav:hover {
+  background: #f0a0c8;
+  color: #0a0510;
+}
+
+/* ── Hero ──────────────────────────────────────── */
+.hero-section {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: flex-start;
+  padding: 0 8vw 6rem;
+  position: relative;
+  overflow: hidden;
+}
+
+/* Big decorative letter watermark */
+.hero-section::before {
+  content: 'CQ';
+  position: absolute;
+  right: -2vw;
+  top: 50%;
+  transform: translateY(-50%);
+  font-family: var(--serif);
+  font-size: clamp(18rem, 28vw, 28rem);
+  font-weight: 900;
+  color: rgba(255,255,255,0.025);
+  line-height: 1;
+  letter-spacing: -0.05em;
+  pointer-events: none;
+  user-select: none;
+}
+
+.hero-eyebrow {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  font-size: 0.78rem;
+  font-weight: 500;
+  letter-spacing: 0.25em;
+  text-transform: uppercase;
+  color: var(--accent);
+  margin-bottom: 1.5rem;
+}
+
+.hero-eyebrow::before {
+  content: '';
+  display: block;
+  width: 48px;
+  height: 1px;
+  background: var(--accent);
+  opacity: 0.7;
+}
+
+.hero-title {
+  font-family: var(--serif);
+  font-size: clamp(3.5rem, 9vw, 8rem);
+  font-weight: 900;
+  line-height: 0.95;
+  letter-spacing: -0.02em;
+  color: var(--text);
+  margin-bottom: 2rem;
+}
+
+.hero-title em {
+  font-style: italic;
+  color: var(--accent);
+}
+
+.hero-meta {
+  display: flex;
+  align-items: center;
+  gap: 2rem;
+  color: var(--muted);
+  font-size: 0.95rem;
+}
+
+.hero-meta span {
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+}
+
+.hero-meta span::before {
+  content: '·';
+  color: var(--accent);
+  font-size: 1.5rem;
+  line-height: 0;
+}
+
+.hero-meta span:first-child::before { display: none; }
+
+/* Scroll cue */
+.scroll-indicator {
+  position: absolute;
+  bottom: 3rem;
+  left: 8vw;
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  color: var(--muted);
+  font-size: 0.72rem;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+}
+
+.mouse {
+  width: 22px;
+  height: 34px;
+  border: 1.5px solid rgba(255,255,255,0.25);
+  border-radius: 11px;
+  position: relative;
+  flex-shrink: 0;
+}
+.mouse::before {
+  content: '';
+  position: absolute;
+  top: 5px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 3px;
+  height: 6px;
+  background: var(--accent);
+  border-radius: 2px;
+  animation: scrollDot 2s infinite ease-in-out;
+}
+@keyframes scrollDot {
+  0%   { transform: translate(-50%, 0);   opacity: 1; }
+  100% { transform: translate(-50%, 12px); opacity: 0; }
+}
+
+/* ── PDF Section ───────────────────────────────── */
+.projects-section {
+  padding: 0 0 6rem;
+  display: flex;
+  justify-content: center;
+}
+
+.projects-grid {
+  display: flex;
+  flex-direction: column;
+  gap: 20vh;          /* Space between pages — stars visible in the gaps */
+  width: 75vw;
+  max-width: 1400px;
+  margin: 0 auto;
+  position: relative;
+}
+
+/* page-outer: positioning root, overflow:visible so pill shows in margin */
+.page-outer {
+  position: relative;
+  width: 100%;
+}
+
+/* page-block: clips the sliding side panel */
+.page-block {
+  position: relative;
+  width: 100%;
+  overflow: hidden;
+}
+
+/* Canvas wrapper — shimmer only */
+.growing-wrapper {
+  width: 100%;
+  position: relative;
+  background: linear-gradient(100deg,
+    rgba(255,255,255,0.015) 30%,
+    rgba(255,255,255,0.045) 50%,
+    rgba(255,255,255,0.015) 70%
+  );
+  background-size: 200% 100%;
+  animation: shimmer 2.2s infinite linear;
+}
+.growing-wrapper[data-rendered="true"] {
+  background: none;
+  animation: none;
+}
+@keyframes shimmer {
+  0%   { background-position:  200% 0; }
+  100% { background-position: -200% 0; }
+}
+
+/* PDF canvas — screen blend to erase black margins */
+.pdf-canvas-bg {
+  width: 100%;
+  height: auto;
+  display: block;
+  mix-blend-mode: screen;
+}
+
+/* ── Reveal Trigger (Side Pill) ───────────────── */
+/* Pill lives in .page-outer (overflow:visible), right margin */
+.reveal-trigger {
+  position: absolute;
+  right: -68px;
+  top: 50%;
+  transform: translateY(-50%);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.45rem;
+  padding: 0.9rem 0.6rem;
+  width: 42px;
+  background: rgba(10, 11, 26, 0.82);
+  border: 1px solid rgba(255,255,255,0.15);
+  border-radius: 3rem;
+  color: var(--muted);
+  cursor: pointer;
+  transition: background 0.25s ease, color 0.25s ease, border-color 0.25s ease;
+  backdrop-filter: blur(12px);
+  z-index: 30;
+}
+
+.reveal-trigger:hover {
+  background: rgba(255,255,255,0.1);
+  color: var(--text);
+  border-color: rgba(255,255,255,0.3);
+}
+
+.reveal-trigger.is-open {
+  color: var(--text);
+  border-color: rgba(255,255,255,0.3);
+}
+
+.reveal-trigger-icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 22px;
+  height: 22px;
+  border: 1.5px solid currentColor;
+  border-radius: 50%;
+  font-size: 1rem;
+  line-height: 1;
+  transition: transform 0.35s cubic-bezier(0.34, 1.56, 0.64, 1);
+  flex-shrink: 0;
+}
+
+.reveal-trigger.is-open .reveal-trigger-icon {
+  transform: rotate(45deg);
+}
+
+.reveal-trigger-label {
+  font-family: var(--sans);
+  font-size: 0.55rem;
+  font-weight: 600;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  writing-mode: vertical-rl;
+}
+
+/* ── Info Panel — slides in from RIGHT over the image ── */
+.info-panel {
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: 42%;
+  height: 100%;
+  background: var(--panel-bg, #e07db3);
+  color: var(--panel-text, #ffffff);
+  background-image:
+    radial-gradient(ellipse at 80% 10%, rgba(255,255,255,0.18) 0%, transparent 55%),
+    radial-gradient(ellipse at 20% 90%, rgba(0,0,0,0.12) 0%, transparent 55%);
+  /* Hidden: slid fully to the right */
+  transform: translateX(100%);
+  transition: transform 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+  will-change: transform;
+  z-index: 10;
+  display: flex;
+  align-items: center;
+}
+.info-panel.is-open {
+  transform: translateX(0);
+}
+
+.info-panel-inner {
+  flex-direction: column;
+  gap: 0.9rem;
+  padding: 0 4rem;
+  /* Fade in the content slightly after the panel opens */
+  opacity: 0;
+  transform: translateY(8px);
+  transition: opacity 0.35s ease 0.1s, transform 0.35s ease 0.1s;
+}
+
+.info-panel.is-open .info-panel-inner {
+  padding: 2.5rem 4rem;
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.info-tag {
+  font-family: var(--sans);
+  font-size: 0.7rem;
+  font-weight: 500;
+  letter-spacing: 0.25em;
+  text-transform: uppercase;
+  opacity: 0.65;
+}
+
+.info-title {
+  font-family: var(--serif);
+  font-size: clamp(2rem, 4vw, 3.5rem);
+  font-weight: 900;
+  font-style: italic;
+  line-height: 1.0;
+  letter-spacing: -0.02em;
+}
+
+.info-desc {
+  font-family: var(--sans);
+  font-size: clamp(0.9rem, 1.3vw, 1.05rem);
+  line-height: 1.75;
+  opacity: 0.82;
+  max-width: 640px;
+}
+
+
+
+
+
+/* ── Side Cloud Annotations ────────────────────── */
+.side-cloud {
+  position: absolute;
+  top: 8%;
+  width: 230px;
+  padding: 1.6rem 1.8rem;
+  background: var(--cloud-bg, #ffffff);
+  color: var(--cloud-text, #000000);
+  /* Organic wobbly shape matching Camila's hand-drawn aesthetic */
+  border-radius: 255px 15px 225px 15px / 15px 225px 15px 255px;
+  border: 3px solid rgba(0,0,0,0.2);
+  text-align: center;
+  z-index: 20;
+  display: flex;
+  flex-direction: column;
+  gap: 0.4rem;
+  box-shadow: 0 12px 40px rgba(0,0,0,0.45);
+  transition: transform 0.3s cubic-bezier(0.34,1.56,0.64,1);
+}
+.side-cloud:hover {
+  transform: scale(1.06) rotate(1.5deg);
+}
+.cloud-left  { left: -260px; }
+.cloud-right { right: -260px; }
+
+.side-cloud h2 {
+  font-family: var(--serif);
+  font-size: 1.5rem;
+  font-weight: 700;
+  font-style: italic;
+  line-height: 1.1;
+}
+.side-cloud p {
+  font-family: var(--sans);
+  font-size: 0.8rem;
+  font-weight: 500;
+  opacity: 0.85;
+  line-height: 1.4;
+}
+
+/* ── Footer ────────────────────────────────────── */
+.contact-footer {
+  position: relative;
+  z-index: 10;
+  padding: 8rem 8vw 4rem;
+  overflow: hidden;
+}
+
+/* Editorial diagonal rule */
+.contact-footer::before {
+  content: '';
+  position: absolute;
+  top: 0; left: 8vw; right: 8vw;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, rgba(255,255,255,0.12), transparent);
+}
+
+.footer-eyebrow {
+  font-size: 0.75rem;
+  letter-spacing: 0.28em;
+  text-transform: uppercase;
+  color: var(--accent);
+  margin-bottom: 1.2rem;
+  display: flex;
+  align-items: center;
+  gap: 0.8rem;
+}
+.footer-eyebrow::before {
+  content: '';
+  display: block;
+  width: 36px;
+  height: 1px;
+  background: var(--accent);
+}
+
+.footer-heading {
+  font-family: var(--serif);
+  font-size: clamp(2.5rem, 6vw, 5.5rem);
+  font-weight: 900;
+  line-height: 1;
+  letter-spacing: -0.02em;
+  color: var(--text);
+  margin-bottom: 1.5rem;
+}
+.footer-heading em {
+  font-style: italic;
+  color: var(--accent);
+}
+
+.footer-tagline {
+  color: var(--muted);
+  font-size: 1rem;
+  max-width: 480px;
+  line-height: 1.7;
+  margin-bottom: 3.5rem;
+}
+
+.social-links {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.9rem;
+  margin-bottom: 5rem;
+}
+
+.social-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.85rem 1.8rem;
+  border: 1px solid rgba(255,255,255,0.12);
+  border-radius: 5rem;
+  color: var(--text);
+  text-decoration: none;
+  font-family: var(--sans);
+  font-size: 0.9rem;
+  font-weight: 500;
+  letter-spacing: 0.02em;
+  transition: all 0.25s ease;
+  background: rgba(255,255,255,0.03);
+}
+.social-btn:hover {
+  background: var(--accent);
+  color: #0a0510;
+  border-color: var(--accent);
+  transform: translateY(-2px);
+  box-shadow: 0 8px 24px rgba(224,125,179,0.35);
+}
+
+.footer-bottom {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding-top: 2rem;
+  border-top: 1px solid rgba(255,255,255,0.05);
+  color: var(--muted);
+  font-size: 0.8rem;
+}

@@ -30,7 +30,9 @@ document.addEventListener('DOMContentLoaded', () => {
     if (pdfjs) {
         pdfjs.GlobalWorkerOptions.workerSrc =
             'https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.worker.min.js';
-        loadPDF('/portafolio_hq.pdf', pdfjs);
+        // Google Drive direct download URL (file must be shared as "Anyone with the link")
+        const PDF_URL = 'https://drive.google.com/uc?export=download&id=1wwd0s1NrxqfiX4E6gTnVS3hp-c6PoVWX';
+        loadPDF(PDF_URL, pdfjs);
     } else {
         console.error('PDF.js not found — check the CDN script tag in index.html');
     }
